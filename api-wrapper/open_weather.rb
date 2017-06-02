@@ -368,6 +368,58 @@ module OpenWeather
     def sunset
       return @sunset
     end
+
+
+    # Super-Object overrides
+
+    # override: Object.to_s
+    def to_s
+      return sprintf(
+        "{lon=%s; lat=%s; weather_specs=%s; base='%s'; temp=%s; pressure=%s; humidity=%s; temp_min=%s; temp_max=%s; visibility=%s; wind_speed=%s; wind_degrees=%s; clouds=%s; rain=%s; snow=%s; dt=%s; sunrise=%s; sunset=%s}",
+        @lon,
+        @lat,
+        WeatherSpec::array_to_string(@weather_specs),
+        @base,
+        @temp,
+        @pressure,
+        @humidity,
+        @temp_min,
+        @temp_max,
+        @visibility,
+        @wind_speed,
+        @wind_degrees,
+        @clouds,
+        @rain,
+        @snow,
+        @dt,
+        @sunrise,
+        @sunset
+        )
+    end
+
+=begin
+
+@lon = lon
+@lat = lat
+@weather_specs = weather_specs
+@base = base
+@temp = temp
+@pressure = pressure
+@humidity = humidity
+@temp_min = temp_min
+@temp_max = temp_max
+@visibility = visibility
+@wind_speed = wind_speed
+@wind_degrees = wind_degrees
+@clouds = clouds
+@rain = rain
+@snow = snow
+@dt = dt
+@sunrise = sunrise
+@sunset = sunset
+
+=end
+
   end
 
   # WeatherSpec
@@ -405,6 +457,21 @@ module OpenWeather
       return ret
     end
 
+    def self.array_to_string(array)
+
+      if (array.size == 0)
+        return "[]"
+      end
+
+      return_string = array[0].to_s
+
+      for k in 1...array.size
+        return_string = sprintf("%s,%s", return_string, array[k].to_s)
+      end
+
+      return sprintf("[%s]", return_string)
+    end
+
 
     def initialize(
       id,
@@ -438,6 +505,15 @@ module OpenWeather
     def icon
       return @icon
     end
+
+
+    # Super-Object overrides
+
+    # override:  Object.to_s()
+    def to_s()
+      return sprintf("{id='%s'; main='%s'; description='%s'; icon='%s'}", @id, @main, @description, @icon)
+    end
+
 
   end
 

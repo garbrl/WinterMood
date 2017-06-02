@@ -23,5 +23,8 @@ printf("Weather Types:\n")
 
 data.weather_specs.each do |weather_spec|
   printf(" %s\n", weather_spec.main)
-end
 
+printf("\n")
+printf("OpenWeather::Data object:\n%s\n", data)
+
+end

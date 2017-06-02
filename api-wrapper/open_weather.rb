@@ -70,8 +70,8 @@ module OpenWeather
 
   # get_weather_data_for_coordinates (lon, lat)
   #
-  # param:      lon,         type: String
-  # param:      lat,         type: String
+  # param:      lon,         type: Integer | Float
+  # param:      lat,         type: Integer | Float
   #
   # Gets the weather data for the provided
   # longitude (param 'lon') and latitude (param 'lat').

@@ -24,4 +24,4 @@ printf("Weather Types:\n")
 data.weather_specs.each do |weather_spec|
   printf(" %s\n", weather_spec.main)
 end
-before_action :method, :only => [:action, :action], :except => [:action, :action]
+

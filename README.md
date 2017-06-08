@@ -1,5 +1,3 @@
-This is a test to see if I can commit changes
-
 # WinterMood - Project proposal
  
 ## Team members

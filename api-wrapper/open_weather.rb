@@ -118,7 +118,7 @@ module OpenWeather
       uri = URI(call_string)
       response_string = Net::HTTP::get(uri)
       return response_string
-    rescue
+    rescue Exception
       raise OpenWeatherException::new("Failed to connect with API")
     end
   end
@@ -219,7 +219,7 @@ module OpenWeather
         sunrise = root["sys"]["sunrise"]
         sunset = root["sys"]["sunset"]
 
-      rescue
+      rescue Excetion
         raise OpenWeatherException::new("Unexpected JSON structure")
       end
 

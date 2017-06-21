@@ -1,0 +1,9 @@
+<h1> WinterMood Application </h1>
+
+<% if logged_in? %>
+  <p> You are logged in as <%= current_user.username %></p>
+  <%= link_to "Log out", logout_path, method: :delete %>
+<% else %>
+  <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+  <p>Existing user? <%= link_to "Log in now!", login_path %></p>
+<% end %>

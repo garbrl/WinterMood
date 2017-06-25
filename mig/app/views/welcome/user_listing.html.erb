@@ -1,0 +1,14 @@
+<h1>Listing users</h1>
+
+<table>
+  <tr>
+    <th>Username</th>
+  </tr>
+
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.username %></td>
+      <td><%= link_to("show", "/welcome/#{user.id}") %></td>
+    </tr>
+  <% end %>
+</table>

@@ -1,0 +1,73 @@
+
+<% if (Session::session_is_valid?(cookies[:username], cookies[:session_key])) %>
+
+  <div align="center">
+    
+    <h2>Heeeeyyyyyyy!</h2>
+    <p> Guess who's logged in! </p>
+    <p> You are! </p>
+    <br/>
+    
+    <p> 
+      Username: <%= cookies[:username] %> 
+    </p>
+    <p>
+      Session Key: <%= cookies[:session_key] %>
+    </p>
+  
+  
+    <%= form_tag("/login/releaselogin", method: "post") do %>
+    
+      <%= submit_tag("Logout") %>
+    
+    <% end %>
+  
+  </div>
+  
+  
+
+
+<% else %>
+
+  <div align="center">
+
+
+    <% if (params.has_key?(:message)) %>
+      <h4 style="color: #FF0000">
+        <%= params[:message] %> 
+      </h4>
+    <% end %>
+
+
+    <h1> LOGIN </h1>
+
+
+    <%= form_tag("/login/requestlogin", method: "post") do %>
+
+      <%= label_tag(:username, "Username:")  %>
+      <%= text_field_tag(:username)          %>
+      <br />
+      <%= label_tag(:password, "Password:")  %>
+      <%= password_field_tag(:password)      %>
+      <br />
+      <%= submit_tag("Login")                %>
+
+    <% end %>
+
+    <h1>NEW USER</h1> 
+    
+    <%= form_tag("/login/getnewlogin", method: "post") do %>
+
+      <%= label_tag(:username, "Username:")  %>
+      <%= text_field_tag(:username)          %>
+      <br />
+      <%= label_tag(:password, "Password:")  %>
+      <%= password_field_tag(:password)      %>
+      <br />
+      <%= submit_tag("Login")                %>
+
+    <% end %>
+    
+  </div>
+
+<% end %>

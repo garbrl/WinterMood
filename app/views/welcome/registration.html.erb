@@ -1,0 +1,82 @@
+
+<div id="container">
+  <div id="header">
+    <div class="frame padding10">
+      <a href="/welcome/index" style="color: inherit; font: inherit; text-decoration: inherit;">
+       WinterMood
+      </a>
+   </div>
+  </div>
+  <div id="main">
+    <div id="feature">
+      <div class="frame">
+        <div class="left v_center">
+          WinterMood is an application that tracks your mood and determines if you are subject to Seasonal Affective Disorder
+        </div>
+      </div>
+    </div>
+    <div class="buttons form-style">
+
+      <%= form_for(
+           :user,
+           :method => :post,
+           :url => "/welcome/create_new_user"
+           ) do |f| %>
+
+           <% if @user.errors.any? %>
+           <div id="error_explanation">
+             <h2>
+               <%= pluralize(@user.errors.count, "error") %> prohibited
+               you from registering:
+             </h2>
+             <ul>
+               <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+      <% end %>
+
+      <p>
+        <%= f.label(:username) %><br>
+        <%= f.text_field(:username, :placeholder => "Username")  %>
+      </p>
+
+      <p>
+        <%= f.label(:password) %><br>
+        <%= f.password_field(:password, :placeholder => "Password") %>
+      </p>
+
+      <p>
+        <%= f.submit("Create my account") %>
+      </p>
+    <% end %>
+
+     <!--
+
+     <form>
+       <input type="text" name="username" placeholder="Username">
+       <input type="email" name="password" placeholder="Password">
+       <input type="submit" value="Register">
+     </form>
+
+     -->
+
+   </div>
+ </div>
+ <div id="footer">
+   <div class="frame padding10">
+     <div class="left">
+       &#169;copyWinterMood 2017
+     </div>
+     <div class="right">
+       <b>Project created and developed by:</b><br/>
+       Vasundhara Gautam<br/>
+       Gabriel Faulhaber<br/>
+       Dylan Bing-Manners<br/>
+       Gavin Xu<br/>
+       Mitchell Larson<br/>
+     </div>
+   </div>
+ </div>
+</div>

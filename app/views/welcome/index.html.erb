@@ -1,114 +1,15 @@
 
 
-<style>
-
-  html, body{
-    height:100%;
-  }
-
-  body{
-    margin:0;
-    padding:0;
-    font-family:Arial, Helvetica, sans-serif;
-    position:relative;
-  }
-
-  .frame{
-    width:1000px;
-    margin:auto;
-    padding:20px;
-  }
-
-  .right{
-    width:313px;
-    padding:0 0 0 20px;
-    float:right;
-  }
-
-  .left{
-    width:667px;
-    float:left;
-  }
-
-  .v_center{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    height: 300px;
-  }
-
-  .buttons{
-    position:relative;
-    margin:auto;
-    text-align:center;
-  }
-
-  button.big{
-    margin: 20px;
-    padding: 20px 40px;
-    font-size:30px;
-    color:white;
-    background-color:#090;
-    border:thin #030;
-    border-radius:8px;
-  }
-
-  #site{
-    height:100%;
-    position:relative;
-  }
-
-  #header{
-    width:100%;
-    height:80px;
-    float:left;
-    padding:0;
-    background-color:#1d241a;
-    background-image:url(header_bg.jpg);
-    background-repeat:repeat-x;
-    font-family:"Courier New", Courier, monospace;
-    font-size:30px;
-    color:#99b8d6;
-  }
-
-  #footer{
-    position:absolute;
-    width:100%;
-    bottom:0;
-    padding:0 0 20px 0;
-    color:white;
-    background-color:#252534;
-    background-image:url(footer_bg.jpg);
-    background-repeat:repeat;
-    box-shadow:0 0 15px rgba(50,50,50,0.75)
-  }
-
-  #main{
-    width:100%;
-    float:left;
-    margin-bottom:20px;
-  }
-
-  #feature{
-    width:100%;
-    float:left;
-    padding:0;
-    font-size:35px;
-    position:relative;
-    background-image:url(feature_bg.jpg);
-    background-position:center;
-    box-shadow:0 0 15px rgba(50,50,50,0.75)
-  }
-
-</style>
-
-
-
 
 <% if (!logged_in?) %>
 
+<div id="container">
   <div id="header">
-    <div class="frame">WinterMood</div>
+    <div class="frame padding10">
+      <a href="/welcome/index" style="color: inherit; font: inherit; text-decoration: inherit;">
+        WinterMood
+      </a>
+    </div>
   </div>
   <div id="main">
     <div id="feature">
@@ -119,18 +20,18 @@
       </div>
     </div>
     <div class="buttons">
-      <a href=<%= login_path  %> >
+      <%= link_to("/welcome/login") do %>
         <button type="button" class="big">Login</button>
-      </a>
-      <a href=<%= signup_path %> >
+      <% end %>
+      <%= link_to("/welcome/registration") do %>
         <button type="button" class="big">Register</button>
-      </a>
+      <% end %>
     </div>
   </div>
   <div id="footer">
     <div class="frame">
       <div class="left">
-        &copyWinterMood 2017
+        &#169;copyWinterMood 2017
       </div>
     <div class="right">
       <b>Project created and developed by:</b><br/>
@@ -142,10 +43,14 @@
       </div>
     </div>
   </div>
-  
+</div>
+
 <% else %>
 
   <p> You are logged in as <%= current_user.username %></p>
-  <%= link_to "Log out", logout_path, method: :delete %>
+  <%= link_to(
+        "Log out",
+        "/welcome/destroy_session",
+        :method => :post) %>
 
 <% end %>

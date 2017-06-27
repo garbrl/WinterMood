@@ -1,0 +1,76 @@
+
+
+<div id="container">
+  <div id="header">
+    <div class="frame padding10">
+      <a href="/welcome/index" style="color: inherit; font: inherit; text-decoration: inherit;">
+        WinterMood
+      </a>
+    </div>
+  </div>
+  <div id="main">
+    <div id="feature">
+      <div class="frame">
+        <div class="left v_center">
+          WinterMood is an application that tracks your mood and determines if you are subject to Seasonal Affective Disorder
+        </div>
+      </div>
+    </div>
+    <div class="buttons form-style">
+
+
+      <%= form_for(
+            :session,
+            :method => :post,
+            :url => "/welcome/create_new_session"
+            ) do |f| %>
+
+        <div id="flash_messages">
+          <% flash.each do |message_type, message| %>
+            <div class="alert alert-<%= message_type %>" style="color: red;"><%= message %></div>
+          <% end %>
+        </div>
+
+        <p id="username_p">
+          <%= f.label(:username) %><br>
+          <%= f.text_field(:username, :placeholder => "Username") %>
+        </p>
+
+        <p id="password_p">
+          <%= f.label :password %><br>
+          <%= f.password_field(:password, :placeholder => "Password") %>
+        </p>
+
+        <%= f.submit("Log in") %>
+      <% end %>
+
+
+      <!--
+
+      <form>
+        <input type="text" name="username" placeholder="Username">
+        <input type="email" name="password" placeholder="Password">
+
+        <input type="submit" value="Login">
+      </form>
+
+      -->
+
+    </div>
+  </div>
+  <div id="footer">
+    <div class="frame padding10">
+      <div class="left">
+        &#169;copyWinterMood 2017
+      </div>
+      <div class="right">
+        <b>Project created and developed by:</b><br/>
+        Vasundhara Gautam<br/>
+        Gabriel Faulhaber<br/>
+        Dylan Bing-Manners<br/>
+        Gavin Xu<br/>
+        Mitchell Larson<br/>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,16 +1,25 @@
 Rails.application.routes.draw do
 
-  root    'welcome#index'
+  root    "welcome#index"
 
-  get     '/login',     to: 'sessions#new'
-  post    '/login',     to: 'sessions#create'
-  delete  '/logout',    to: 'sessions#destroy'
-  get     '/signup',    to: 'users#new'
-  post	  '/signup',	to: 'users#create'
+  get("/welcome/index", to: "welcome#index")
+  get("/welcome/login", to: "welcome#login")
+  get("/welcome/registration", to: "welcome#registration")
+  get("/welcome/show", to: "welcome#show")
+  get("/welcome/user_listing", to: "welcome#user_listing")
+
+  post("/welcome/create_new_session", to: "welcome#create_new_session")
+  post("/welcome/destroy_session", to: "welcome#destroy_session")
+  post("/welcome/create_new_user", to: "welcome#create_new_user")
+
+  resources :welcome
 
 
-  
-  resources :users
+  match(
+    "*path",
+    :to => redirect("/errors/404"),
+    :via => :get
+    );
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

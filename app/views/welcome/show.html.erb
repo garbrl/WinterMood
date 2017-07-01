@@ -1,8 +1,17 @@
+
+<% noun =
+        if (current_user.username == @user.username)
+          "Your"
+        else
+          "User's"
+        end
+  %>
+
 <p>
-  <strong>Your username is:</strong>
+  <strong><%=noun%> username is:</strong>
   <%= @user.username %>
 </p>
 
 <p>
-  <strong>Your mood data will display here.</strong>
+  <strong><%=noun%> mood data will display here.</strong>
 </p>

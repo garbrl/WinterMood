@@ -29,6 +29,9 @@
 
     <% else %>
 
+
+    Welcome back <%= current_user.username %>!
+
     <div class="buttons">
       <%= link_to("/welcome/destroy_session", :method => :post) do %>
           <button type="button" class="big">Log out</button>
@@ -42,7 +45,7 @@
   <div id="footer">
     <div class="frame">
       <div class="left">
-        &#169;copyWinterMood 2017
+        &#169; WinterMood 2017
       </div>
     <div class="right">
       <b>Project created and developed by:</b><br/>

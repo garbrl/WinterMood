@@ -15,9 +15,7 @@
         </div>
       </div>
     </div>
-
-    <% if (!logged_in?) %>
-
+    
     <div class="buttons">
       <%= link_to("/welcome/login") do %>
         <button type="button" class="big">Login</button>
@@ -28,9 +26,6 @@
     </div>
 
     <% else %>
-
-
-    Welcome back <%= current_user.username %>!
 
     <div class="buttons">
       <%= link_to("/welcome/destroy_session", :method => :post) do %>

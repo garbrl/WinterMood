@@ -1,8 +1,4 @@
 
-
-
-<% if (!logged_in?) %>
-
 <div id="container">
   <div id="header">
     <div class="frame padding10">
@@ -19,6 +15,9 @@
         </div>
       </div>
     </div>
+
+    <% if (!logged_in?) %>
+
     <div class="buttons">
       <%= link_to("/welcome/login") do %>
         <button type="button" class="big">Login</button>
@@ -27,6 +26,18 @@
         <button type="button" class="big">Register</button>
       <% end %>
     </div>
+
+    <% else %>
+
+    <div class="buttons">
+      <%= link_to("/welcome/destroy_session", :method => :post) do %>
+          <button type="button" class="big">Log out</button>
+      <% end %>
+    </div>
+
+    <% end %>
+
+
   </div>
   <div id="footer">
     <div class="frame">
@@ -44,13 +55,3 @@
     </div>
   </div>
 </div>
-
-<% else %>
-
-  <p> You are logged in as <%= current_user.username %></p>
-  <%= link_to(
-        "Log out",
-        "/welcome/destroy_session",
-        :method => :post) %>
-
-<% end %>

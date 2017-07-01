@@ -13,7 +13,7 @@ class WelcomeController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       # Log in
       log_in(user)
-      redirect_to("/welcome/user_listing")
+      redirect_to("/welcome/index")
     else
       flash.now[:danger] = 'Invalid username/password combination'
       render("login")
@@ -42,7 +42,7 @@ class WelcomeController < ApplicationController
 
 		if @user.save
 			log_in(@user)
-	  	redirect_to("/welcome/#{@user.id}")
+	  	redirect_to("/welcome/index")
 		else
 		  render 'registration'
 		end

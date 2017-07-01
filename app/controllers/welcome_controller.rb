@@ -44,7 +44,7 @@ class WelcomeController < ApplicationController
 			log_in(@user)
 	  	redirect_to("/welcome/#{@user.id}")
 		else
-		  render 'new'
+		  render 'registration'
 		end
   end
 

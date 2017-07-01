@@ -15,23 +15,30 @@
         </div>
       </div>
     </div>
-    
-    <div class="buttons">
-      <%= link_to("/welcome/login") do %>
-        <button type="button" class="big">Login</button>
-      <% end %>
-      <%= link_to("/welcome/registration") do %>
-        <button type="button" class="big">Register</button>
-      <% end %>
-    </div>
+
+    <% if (!logged_in?) %>
+
+      <div class="buttons">
+        <%= link_to("/welcome/login") do %>
+          <button type="button" class="big">Login</button>
+        <% end %>
+        <%= link_to("/welcome/registration") do %>
+          <button type="button" class="big">Register</button>
+        <% end %>
+      </div>
 
     <% else %>
 
-    <div class="buttons">
-      <%= link_to("/welcome/destroy_session", :method => :post) do %>
-          <button type="button" class="big">Log out</button>
-      <% end %>
-    </div>
+      <div class="username_display">
+        <span style="font-size: 20px" > You're logged in as: </span> <br />
+        <span style="font-size: 46px" > <%= current_user.username.titleize %> </span>
+      </div>
+
+      <div class="buttons">
+        <%= link_to("/welcome/destroy_session", :method => :post) do %>
+            <button type="button" class="big">Log out</button>
+        <% end %>
+      </div>
 
     <% end %>
 

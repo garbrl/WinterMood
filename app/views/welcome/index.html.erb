@@ -35,10 +35,23 @@
       </div>
 
       <div class="buttons">
+
+        <% if (current_user.username == "john cena") %>
+          <%= link_to("/welcome/user_listing") do %>
+          <button type="button" class="big">View users</button>
+          <% end %>
+        <% else %>
+          <button type="button" class="big">Log data</button>
+          <%= link_to("/welcome/#{current_user.id}") do %>
+          <button type="button" class="big">View trends</button>
+          <% end %>
+        <% end %>
+
         <%= link_to("/welcome/destroy_session", :method => :post) do %>
             <button type="button" class="big">Log out</button>
         <% end %>
       </div>
+
 
     <% end %>
 

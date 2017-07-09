@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>WinterMood</title>
+  <link href="styles.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+ <div id="container">
+  <div id="header">
+  	<div class="frame padding10">WinterMood</div>
+  </div>
+  <div id="main">
+    <div id="feature">
+	  <div class="frame">
+        <div class="left v_center">
+          WinterMood is an application that tracks your mood and determines if you are subject to Seasonal Affective Disorder
+        </div>
+      </div>
+	</div>
+    <div class="buttons form-style">
+      <form>
+
+    Hours of sleep:<br>
+    <input type="range" name="sleep" min="0" max="12" step="0.5" value="8" onchange="showSleep(this.value)" style="margin: 0; width: 400px;"/>
+    <span id="sleep">8</span><br>
+
+    <script type="text/javascript">
+    function showSleep(newValue)
+    {
+       document.getElementById("sleep").innerHTML=newValue;
+    }
+    </script><br>
+
+    Hours of exercise:<br>
+    <input type="range" name="exercise" min="0" max="12" step="0.5" value="1" onchange="showExercise(this.value)" style="margin: 0; width: 400px;" />
+    <span id="exercise">1</span><br>
+
+    <script type="text/javascript">
+    function showExercise(newValue)
+    {
+       document.getElementById("exercise").innerHTML=newValue;
+    }
+    </script><br>
+
+    Current mood:<br>
+		<input type="range" name="mood" min="1" max="4" step="1" value="3" onchange="showMood(this.value)" style="margin: 0; width: 200px;"/>
+    <span id="mood">3</span><br>
+
+    <script type="text/javascript">
+    function showMood(newValue)
+    {
+       document.getElementById("mood").innerHTML=newValue;
+    }
+    </script><br>
+
+    <!-- Change value="Vancouver" to point to the default city stored in the database for each user  -->
+    Location:<br>
+    <input type="checkbox" name="newdefault" value="False"> Set new default city<br>
+    <input type="text" name="location" value="Vancouver"><br>
+
+	  <input type="submit" value="Log data">
+	  </form>
+    </div>
+  </div>
+  <div id="footer">
+	<div class="frame padding10">
+      <div class="left">
+        &#169; WinterMood 2017
+      </div>
+	  <div class="right">
+      	<b>Project created and developed by:</b><br/>
+        Vasundhara Gautam<br/>
+        Gabriel Faulhaber<br/>
+        Dylan Bing-Manners<br/>
+        Gavin Xu<br/>
+        Mitchell Larson<br/>
+      </div>
+	</div>
+  </div>
+ </div>
+</body>
+</html>

@@ -4,81 +4,103 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>WinterMood</title>
   <link href="styles.css" rel="stylesheet" type="text/css" />
+
+  <style>
+    .range_display {
+      width: 40px;
+      vertical-align: top;
+      display: inline-block;
+    }
+  </style>
+
 </head>
 
 <body>
- <div id="container">
-  <div id="header">
-  	<div class="frame padding10">WinterMood</div>
-  </div>
-  <div id="main">
-    <div id="feature">
-	  <div class="frame">
-        <div class="left v_center">
-          WinterMood is an application that tracks your mood and determines if you are subject to Seasonal Affective Disorder
+
+  <script>
+    function range_onInput(id, value)
+    {
+      document.getElementById(id + "_span", value).innerHTML = value;
+    }
+  </script>
+
+  <div id="container">
+    <div id="header">
+    	<div class="frame padding10">WinterMood</div>
+    </div>
+    <div id="main">
+      <div id="feature">
+  	    <div class="frame">
+          <div class="left v_center">
+            WinterMood is an application that tracks your mood and determines if you are subject to Seasonal Affective Disorder
+          </div>
         </div>
+  	  </div>
+      <div class="buttons form-style">
+        <form>
+
+          <p>
+            Hours of sleep:
+          </p>
+          <div style="display: inline;">
+            <input type="range" name="sleep" min="0" max="12" step="0.5" value="8" onchange="range_onInput(this.name, this.value)" oninput="range_onInput(this.name, this.value)" style="margin: 0; width: 400px; vertical-align: top;"/>
+            <span id="sleep_span" class="range_display">
+              8
+            </span>
+          </div>
+
+          <p>
+            Hours of exercise:
+          </p>
+          <div style="display: inline;">
+            <input type="range" name="exercise" min="0" max="12" step="0.5" value="1" onchange="range_onInput(this.name, this.value)" oninput="range_onInput(this.name, this.value)" style="margin: 0; width: 400px; vertical-align: top;" />
+            <span id="exercise_span" class="range_display">
+              1
+            </span>
+          </div>
+
+          <p>
+            Current mood:
+          </p>
+          <div style="display: inline;">
+            <input type="range" name="mood" min="1" max="4" step="1" value="3" onchange="range_onInput(this.name, this.value)" oninput="range_onInput(this.name, this.value)" style="margin: 0; width: 200px; vertical-align: top;"/>
+            <span id="mood_span" class="range_display">
+              3
+            </span>
+          </div>
+
+          <div>
+            <p>
+              Location:
+            </p>
+            <div style="dislay: inline;">
+              <input type="text" name="location" value="Vancouver">
+              <input type="checkbox" name="newdefault" value="False"> Remember City as default
+            </div>
+
+          </div>
+
+          <br />
+          <br />
+      	  <input type="submit" value="Log data">
+    	  </form>
       </div>
-	</div>
-    <div class="buttons form-style">
-      <form>
-
-    Hours of sleep:<br>
-    <input type="range" name="sleep" min="0" max="12" step="0.5" value="8" onchange="showSleep(this.value)" style="margin: 0; width: 400px;"/>
-    <span id="sleep">8</span><br>
-
-    <script type="text/javascript">
-    function showSleep(newValue)
-    {
-       document.getElementById("sleep").innerHTML=newValue;
-    }
-    </script><br>
-
-    Hours of exercise:<br>
-    <input type="range" name="exercise" min="0" max="12" step="0.5" value="1" onchange="showExercise(this.value)" style="margin: 0; width: 400px;" />
-    <span id="exercise">1</span><br>
-
-    <script type="text/javascript">
-    function showExercise(newValue)
-    {
-       document.getElementById("exercise").innerHTML=newValue;
-    }
-    </script><br>
-
-    Current mood:<br>
-		<input type="range" name="mood" min="1" max="4" step="1" value="3" onchange="showMood(this.value)" style="margin: 0; width: 200px;"/>
-    <span id="mood">3</span><br>
-
-    <script type="text/javascript">
-    function showMood(newValue)
-    {
-       document.getElementById("mood").innerHTML=newValue;
-    }
-    </script><br>
-
-    <!-- Change value="Vancouver" to point to the default city stored in the database for each user  -->
-    Location:<br>
-    <input type="checkbox" name="newdefault" value="False"> Set new default city<br>
-    <input type="text" name="location" value="Vancouver"><br>
-
-	  <input type="submit" value="Log data">
-	  </form>
+    </div>
+    <div id="footer">
+    	<div class="frame padding10">
+        <div class="left">
+          &#169; WinterMood 2017
+        </div>
+    	  <div class="right">
+          	<b>Project created and developed by:</b><br/>
+            Vasundhara Gautam<br/>
+            Gabriel Faulhaber<br/>
+            Dylan Bing-Manners<br/>
+            Gavin Xu<br/>
+            Mitchell Larson<br/>
+        </div>
+    	</div>
     </div>
   </div>
-  <div id="footer">
-	<div class="frame padding10">
-      <div class="left">
-        &#169; WinterMood 2017
-      </div>
-	  <div class="right">
-      	<b>Project created and developed by:</b><br/>
-        Vasundhara Gautam<br/>
-        Gabriel Faulhaber<br/>
-        Dylan Bing-Manners<br/>
-        Gavin Xu<br/>
-        Mitchell Larson<br/>
-      </div>
-	</div>
-  </div>
- </div>
 </body>
 </html>

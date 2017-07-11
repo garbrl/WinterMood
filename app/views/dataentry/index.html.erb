@@ -1,0 +1,153 @@
+
+<script src="/js/levenshtein.js"></script>
+<script src="/js/dataentry_index.js"></script>
+
+
+<div id="container">
+  <div id="header">
+  	<div class="frame padding10">
+      <a href="/welcome/index" style="color: inherit; font: inherit; text-decoration: inherit;">
+        WinterMood
+      </a>
+    </div>
+  </div>
+  <div id="main">
+
+    <div id="feature">
+	    <div class="frame">
+        <div class="left v_center">
+          WinterMood is an application that tracks your mood and determines if you are subject to Seasonal Affective Disorder
+        </div>
+      </div>
+	  </div>
+
+    <div align="center">
+      <h2 id="message_banner_h2" style="color: green;">
+        <%= params[:message_banner] == nil ? "" : "#{params[:message_banner]}" %>
+      </h2>
+
+      <h3 id="countdown_h3">
+        Please enter your data!
+      </h3>
+
+      <h4 id="validate_error_h4" style="color: red;"></h4>
+    </div>
+
+    <div class="buttons form-style">
+
+      <%= form_tag(
+            "/dataentry/add_data",
+            :name => "submitForm",
+            :method => "post",
+            :onsubmit => "return validateSubmitForm();"
+            ) do %>
+
+        <p>
+          Hours of sleep:
+        </p>
+        <div style="display: inline;">
+          <%= range_field_tag(
+            :sleep,
+            8,
+            :in => 0..12,
+            :step => 0.5,
+            :class => "range",
+            :onchange => "range_onInput(this.name, this.value)",
+            :oninput => "range_onInput(this.name, this.value)"
+            ) %>
+          <span id="sleep_span" class="range_display">
+            8
+          </span>
+        </div>
+
+        <p>
+          Hours of exercise:
+        </p>
+        <div style="display: inline;">
+          <%= range_field_tag(
+            :exercise,
+            1,
+            :in => 0..12,
+            :step => 0.5,
+            :class => "range",
+            :onchange => "range_onInput(this.name, this.value)",
+            :oninput => "range_onInput(this.name, this.value)"
+            ) %>
+          <span id="exercise_span" class="range_display">
+            1
+          </span>
+        </div>
+
+        <p>
+          Current mood:
+        </p>
+        <div style="display: inline;">
+          <%= range_field_tag(
+            :mood,
+            @startMood,
+            :in => 1..4,
+            :step => 1,
+            :class => "range",
+            :onchange => "range_onInput(this.name, this.value)",
+            :oninput => "range_onInput(this.name, this.value)"
+            )%>
+          <span id="mood_span" class="range_display">
+            <%= "#{@startMood}" %>
+          </span>
+        </div>
+
+        <div>
+          <p>
+            Location:
+          </p>
+          <div style="dislay: inline;">
+            <%= text_field_tag(
+              :city,
+              @defaultCity.titleize(),
+              :onkeyup => "textField_OnChange();"
+              ) %>
+            <%= check_box_tag(
+              :keep_city
+              )%>
+            Remember City as default
+          </div>
+
+        </div>
+
+        <br />
+        <br />
+        <%= submit_tag("Submit", :id => "submit_input") %>
+  	  <% end %>
+    </div>
+  </div>
+  <div id="footer">
+  	<div class="frame padding10">
+      <div class="left">
+        &#169; WinterMood 2017
+      </div>
+  	  <div class="right">
+        	<b>Project created and developed by:</b><br/>
+          Vasundhara Gautam<br/>
+          Gabriel Faulhaber<br/>
+          Dylan Bing-Manners<br/>
+          Gavin Xu<br/>
+          Mitchell Larson<br/>
+      </div>
+  	</div>
+  </div>
+</div>
+
+
+
+<% if (@remainingTimeToInput != 0)  %>
+  <script>
+    remainingTime = <%= @remainingTimeToInput %>;
+    console.log("Not yet available. Remaining time: " + remainingTime);
+    changeCountdownDisplay();
+    disableSubmit();
+  </script>
+<% else                             %>
+  <script>
+    console.log("Input is available");
+  </script>
+<% end                              %>

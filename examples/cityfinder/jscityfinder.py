@@ -54,7 +54,6 @@ def get_cities(path):
     
     trimmedLine = line.strip()
     
-    
     if ( not (trimmedLine in ret)):
       ret.append(trimmedLine)
     
@@ -65,7 +64,7 @@ def output_cities(path, cities):
   f = open(path, "w")
   
   for city in cities:
-    f.write("%s\n" % (city))
+    f.write("\"%s\",\n" % (city))
 
     
   f.close()
@@ -81,7 +80,7 @@ def main():
   
   API_KEY= "0c5e74401870eaa1f6872f30f3d329d3"
   CITY_LIST_PATH = "citylist.txt"
-  VALID_CITY_OUTPUT_PATH = None
+  VALID_CITY_OUTPUT_PATH = "test.txt"
   INVALID_CITY_OUTPUT_PATH = None
   
   signal(SIGINT, sig_handler)

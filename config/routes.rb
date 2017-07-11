@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'dataentry/index'
+
   root    "welcome#index"
 
   get("/welcome/index", to: "welcome#index")
@@ -8,9 +10,18 @@ Rails.application.routes.draw do
   get("/welcome/show", to: "welcome#show")
   get("/welcome/user_listing", to: "welcome#user_listing")
 
+  get("/dataentry/index", to: "dataentry#index")
+
+
+
   post("/welcome/create_new_session", to: "welcome#create_new_session")
   post("/welcome/destroy_session", to: "welcome#destroy_session")
   post("/welcome/create_new_user", to: "welcome#create_new_user")
+
+  post("/dataentry/add_data", to: "dataentry#add_data")
+
+
+
 
   resources :welcome
 

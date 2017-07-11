@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  userid: 1
+  city: MyString
+  mood: 1
+  sleep: 1
+  excersize: 1
+  overcast: 1
+
+two:
+  userid: 1
+  city: MyString
+  mood: 1
+  sleep: 1
+  excersize: 1
+  overcast: 1

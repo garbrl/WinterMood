@@ -12,6 +12,74 @@
   <%= @user.username %>
 </p>
 
-<p>
-  <strong><%=noun%> mood data will display here.</strong>
-</p>
+<a href="/dataentry/index">
+  Enter Data!
+</a>
+
+<% if (@moods.size == 0) %>
+
+  <p>
+    <strong><%=noun%> mood data will display here... if you had any.</strong>
+  </p>
+
+<% else %>
+
+  <p>
+    <strong>Default Input Values:</strong>
+  </p>
+  <p>
+    <strong>City: </strong>
+    <%= "#{@ext.defaultCity}" %>
+  </p>
+  <p>
+    <strong>Sleep: </strong>
+    <%= "#{@ext.defaultSleep}" %>
+  </p>
+  <p>
+    <strong>Exercise: </strong>
+    <%= "#{@ext.defaultExercise}" %>
+  </p>
+
+
+  <br />
+  <p>
+    <strong>Inputted Data:</strong>
+  </p>
+
+  <table border="1">
+    <tr>
+      <th>City</th>
+      <th>Mood</th>
+      <th>Sleep</th>
+      <th>Exercise</th>
+      <th>Overcast</th>
+      <th>Time</th>
+    </tr>
+
+    <% @moods.each do |mood| %>
+
+      <tr>
+        <td>
+          <%= "#{mood.city}" %>
+        </td>
+        <td>
+          <%= "#{mood.mood}" %>
+        </td>
+        <td>
+          <%= "#{mood.sleep}" %>
+        </td>
+        <td>
+          <%= "#{mood.exercise}" %>
+        </td>
+        <td>
+          <%= "#{mood.overcast}" %>
+        </td>
+        <td>
+          <%= "#{mood.created_at}" %>
+        </td>
+      </tr>
+
+    <% end %>
+  </table>
+
+<% end %>

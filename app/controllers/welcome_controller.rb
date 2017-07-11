@@ -1,3 +1,4 @@
+
 class WelcomeController < ApplicationController
 
 =begin
@@ -54,7 +55,7 @@ class WelcomeController < ApplicationController
     user = current_user;
 
     if (user == nil || user.username != "john cena")
-      render(:file => File.join(Rails.root, "/public/errors/403.html"), :status => 403)
+      render_error(403)
     else
   		@users = User.all
     end
@@ -75,6 +76,15 @@ class WelcomeController < ApplicationController
   def create_new_user
 		@user = User.new(params.require(:user).permit(:username, :password))
 
+    ext = Userext.new;
+
+    ext.lastEntryTime = 0 # 1970 January 1st 00:00:00
+    ext.defaultCity = ""
+    ext.defaultSleep = 480
+    ext.defaultExercise = 30
+
+    ext.save()
+
 		if @user.save
 			log_in(@user)
 	  	redirect_to("/welcome/index")
@@ -94,14 +104,17 @@ class WelcomeController < ApplicationController
     user = current_user;
 
     if (!is_integer(params[:id]))
-      render(:file => File.join(Rails.root, "/public/errors/404.html"), :status => 404)
+      render_error(404)
     elsif (
       user == nil ||
       (user.id != params[:id].to_i && user.username != "john cena")
       )
-      render(:file => File.join(Rails.root, "/public/errors/403.html"), :status => 403)
+      render_error(403)
     else
       @user = User.find(params[:id])
+      @ext = Userext.find(params[:id])
+      @moods = Mood.select("*").where(:userid => Integer(params[:id]))
+
     end
 
   end

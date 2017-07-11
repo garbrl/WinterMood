@@ -1,0 +1,6 @@
+--2017-07-08 18:35:34--  http://api.openweathermap.org/data/2.5/weather?q=osdjosdf&APPID=0c5e74401870eaa1f6872f30f3d329d3
+Resolving api.openweathermap.org (api.openweathermap.org)... 192.241.169.168, 162.243.53.59
+Connecting to api.openweathermap.org (api.openweathermap.org)|192.241.169.168|:80... connected.
+HTTP request sent, awaiting response... 404 Not Found
+2017-07-08 18:35:35 ERROR 404: Not Found.
+

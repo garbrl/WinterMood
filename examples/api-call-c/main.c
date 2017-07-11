@@ -20,7 +20,7 @@
 
 
 /* Change this value for city queries */
-#define QUERY_STRING_CITY "ottawa"
+#define QUERY_STRING_CITY "osdjosdf"
 
 /* Change these values for coordinate queries */
 #define QUERY_STRING_COORDINATE_LAT "25"
@@ -52,6 +52,7 @@ char * fix_string_for_system_call(char *);
 
 int main ( void )
 {
+
 
   /* Change this according to the desired query type */
   int query_type = QUERY_TYPE_CITY;

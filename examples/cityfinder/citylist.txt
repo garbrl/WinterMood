@@ -49,6 +49,57 @@ Victoria
 West Kelowna
 White Rock
 Williams Lake
+Abbotsford
+Armstrong
+Burnaby
+Campbell River
+Castlegar
+Chilliwack
+Colwood
+Coquitlam
+Courtenay
+Cranbrook
+Dawson Creek
+Duncan
+Enderby
+Fernie
+Fort St. John
+Grand Forks
+Greenwood
+Kamloops
+Kelowna
+Kimberley
+Langford
+Langley
+Maple Ridge
+Merritt
+Nanaimo
+Nelson
+New Westminster
+North Vancouver
+Parksville
+Penticton
+Pitt Meadows
+Port Alberni
+Port Coquitlam
+Port Moody
+Powell River
+Prince George
+Prince Rupert
+Quesnel
+Revelstoke
+Richmond
+Rossland
+Salmon Arm
+Surrey
+Terrace
+Trail
+Vancouver
+Vernon
+Victoria
+West Kelowna
+White Rock
+Williams Lake
 100 Mile House
 Barriere
 Central Saanich

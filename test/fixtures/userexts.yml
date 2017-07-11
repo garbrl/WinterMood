@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lastEntryTime: 1
+  defaultCity: MyString
+  defaultSleep: 1
+  defaultExercise: 1
+
+two:
+  lastEntryTime: 1
+  defaultCity: MyString
+  defaultSleep: 1
+  defaultExercise: 1

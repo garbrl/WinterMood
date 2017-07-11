@@ -1,4 +1,7 @@
 class DataentryController < ApplicationController
+    
+  require "./api-wrapper/open_weather.rb"
+  OpenWeather::init("0c5e74401870eaa1f6872f30f3d329d3", "http://api.openweathermap.org/data/2.5/weather")
 
   def index
 
@@ -56,7 +59,7 @@ class DataentryController < ApplicationController
       mood.mood = Integer(params[:mood])
       mood.sleep = Float(params[:sleep]) * 60
       mood.exercise = Float(params[:exercise]) * 60
-      mood.overcast = Random::rand(100)            #TODO: must get data from API
+      mood.overcast = OpenWeather::get_weather_data_for_city(mood.city).clouds
 
       keep_city = params[:keep_city] == "1";
       keep_sleep = params[:keep_sleep] == "1";

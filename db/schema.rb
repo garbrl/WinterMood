@@ -10,7 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170619071159) do
+ActiveRecord::Schema.define(version: 20170710014414) do
+
+  create_table "moods", force: :cascade do |t|
+    t.integer "userid"
+    t.string "city"
+    t.integer "mood"
+    t.integer "sleep"
+    t.integer "exercise"
+    t.integer "overcast"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "userexts", force: :cascade do |t|
+    t.integer "lastEntryTime"
+    t.string "defaultCity"
+    t.integer "defaultSleep"
+    t.integer "defaultExercise"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username"

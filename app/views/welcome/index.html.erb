@@ -38,12 +38,14 @@
 
         <% if (current_user.username == "john cena") %>
           <%= link_to("/welcome/user_listing") do %>
-          <button type="button" class="big">View users</button>
+            <button type="button" class="big">View users</button>
           <% end %>
         <% else %>
-          <button type="button" class="big">Log data</button>
+          <%= link_to("/dataentry/index") do %>
+            <button type="button" class="big">Log data</button>
+          <% end %>
           <%= link_to("/welcome/#{current_user.id}") do %>
-          <button type="button" class="big">View trends</button>
+            <button type="button" class="big">View trends</button>
           <% end %>
         <% end %>
 

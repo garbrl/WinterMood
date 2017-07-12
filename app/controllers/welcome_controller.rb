@@ -77,7 +77,7 @@ class WelcomeController < ApplicationController
 		@user = User.new(params.require(:user).permit(:username, :password))
 
     ext = Userext.new;
-
+    ext.id = @user.id
     ext.lastEntryTime = 0 # 1970 January 1st 00:00:00
     ext.defaultCity = ""
     ext.defaultSleep = 480

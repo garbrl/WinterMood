@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170713005903) do
+ActiveRecord::Schema.define(version: 20170713220913) do
 
   create_table "moods", force: :cascade do |t|
     t.integer "userid"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20170713005903) do
     t.string "defaultCity", default: "Vancouver"
     t.integer "defaultSleep", default: 8
     t.integer "defaultExercise", default: 1
+    t.string "email"
   end
 
 end

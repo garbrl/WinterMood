@@ -38,6 +38,11 @@
       <% end %>
 
       <p>
+        <%= f.label(:email) %><br>
+        <%= f.email_field(:email, :placeholder => "username@domain.com")  %>
+      </p>
+
+      <p>
         <%= f.label(:username) %><br>
         <%= f.text_field(:username, :placeholder => "Username")  %>
       </p>

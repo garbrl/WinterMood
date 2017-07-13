@@ -74,7 +74,7 @@ class WelcomeController < ApplicationController
                user credential set.
 =end
   def create_new_user
-		@user = User.new(params.require(:user).permit(:username, :password))
+		@user = User.new(params.require(:user).permit(:username, :password, :email))
 
     @user.lastEntryTime = 0 # 1970 January 1st 00:00:00
     @user.defaultCity = "Vancouver"

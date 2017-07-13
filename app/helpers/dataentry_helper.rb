@@ -7,7 +7,7 @@ module DataentryHelper
 
   def neccessaryEntryDelay()
     #return 10800  #TODO: Uncomment (3 hours)
-    return 60
+    return 180
   end
 
 end

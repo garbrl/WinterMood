@@ -1,6 +1,6 @@
 
-<script src="/js/levenshtein.js"></script>
-<script src="/js/dataentry_index.js"></script>
+<script src="/js/levenshtein.js" async=false></script>
+<script src="/js/dataentry_index.js" async=false></script>
 
 
 <div id="container">
@@ -138,16 +138,15 @@
 </div>
 
 
-
-<% if (@remainingTimeToInput != 0)  %>
-  <script>
-    remainingTime = <%= @remainingTimeToInput %>;
-    console.log("Not yet available. Remaining time: " + remainingTime);
-    changeCountdownDisplay();
-    disableSubmit();
-  </script>
-<% else                             %>
-  <script>
-    console.log("Input is available");
-  </script>
-<% end                              %>
+<script>
+  window.setTimeout(function() {
+    <% if (@remainingTimeToInput != 0)  %>
+      remainingTime = <%= @remainingTimeToInput %>;
+      console.log("Not yet available. Remaining time: " + remainingTime);
+      changeCountdownDisplay();
+      disableSubmit();
+    <% else %>
+      console.log("Input is available");
+    <% end %>
+  }, 200);
+</script>

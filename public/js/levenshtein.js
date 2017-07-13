@@ -4,6 +4,7 @@
  * distance between two strings
  */
 
+
 function formMatrixArray(width, height) {
 
   var ret = [];
@@ -91,3 +92,6 @@ function levenshteinDistance(str1, str2) {
 
   return matrix.get(str1.length, str2.length);
 }
+
+
+console.log("Finished loading levenshtein.js");

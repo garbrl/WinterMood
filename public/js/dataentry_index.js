@@ -1,6 +1,7 @@
-//
-// Javascript file for controller dataentry/index.html.erb
-//
+/*
+ * Javascript file for controller dataentry/index.html.erb
+ */
+
 
 var remainingTime = 0;
 var validCities = [
@@ -294,3 +295,5 @@ function range_onInput(id, value)
 {
   document.getElementById(id + "_span", value).innerHTML = value;
 }
+
+console.log("Finished loading dataentry_index.js");

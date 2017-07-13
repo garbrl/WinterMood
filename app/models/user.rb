@@ -11,7 +11,9 @@ class User < ApplicationRecord
 	BCrypt::Password.create(string, cost: cost)
  end
 
-
-
+ validates :lastEntryTime, presence: true
+ validates :defaultCity, presence: true
+ validates :defaultSleep, presence: true
+ validates :defaultExercise, presence: true
 
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170710014414) do
+ActiveRecord::Schema.define(version: 20170713005903) do
 
   create_table "moods", force: :cascade do |t|
     t.integer "userid"
@@ -23,20 +23,15 @@ ActiveRecord::Schema.define(version: 20170710014414) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "userexts", force: :cascade do |t|
-    t.integer "lastEntryTime"
-    t.string "defaultCity"
-    t.integer "defaultSleep"
-    t.integer "defaultExercise"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
+    t.integer "lastEntryTime", default: 0
+    t.string "defaultCity", default: "Vancouver"
+    t.integer "defaultSleep", default: 8
+    t.integer "defaultExercise", default: 1
   end
 
 end

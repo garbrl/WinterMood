@@ -76,14 +76,10 @@ class WelcomeController < ApplicationController
   def create_new_user
 		@user = User.new(params.require(:user).permit(:username, :password))
 
-    ext = Userext.new;
-    ext.id = @user.id
-    ext.lastEntryTime = 0 # 1970 January 1st 00:00:00
-    ext.defaultCity = ""
-    ext.defaultSleep = 480
-    ext.defaultExercise = 30
-
-    ext.save()
+    @user.lastEntryTime = 0 # 1970 January 1st 00:00:00
+    @user.defaultCity = "Vancouver"
+    @user.defaultSleep = 480
+    @user.defaultExercise = 30
 
 		if @user.save
 			log_in(@user)
@@ -112,7 +108,7 @@ class WelcomeController < ApplicationController
       render_error(403)
     else
       @user = User.find(params[:id])
-      @ext = Userext.find(params[:id])
+      @ext = User.find(params[:id])
       @moods = Mood.select("*").where(:userid => Integer(params[:id]))
 
     end

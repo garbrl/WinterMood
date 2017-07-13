@@ -1,5 +1,5 @@
 class DataentryController < ApplicationController
-    
+
   require "./api-wrapper/open_weather.rb"
   OpenWeather::init("0c5e74401870eaa1f6872f30f3d329d3", "http://api.openweathermap.org/data/2.5/weather")
 
@@ -10,7 +10,7 @@ class DataentryController < ApplicationController
       return
     end
 
-    ext = Userext.find(current_user.id);
+    ext = current_user
 
     if (ext == nil)
       render_error(500)
@@ -41,7 +41,7 @@ class DataentryController < ApplicationController
       return
     end
 
-    ext = Userext.find(current_user.id)
+    ext = current_user
     if (ext == nil)
       render_error(500)
     end
@@ -71,18 +71,18 @@ class DataentryController < ApplicationController
       return
     end
 
+    ext.defaultCity = mood.city;
     if (keep_city)
-      ext.defaultCity = mood.city;
+      ext.update_attribute(:defaultCity, mood.city);
     end
     if (keep_sleep)
-      ext.defaultSleep = mood.sleep;
+      ext.update_attribute(:defaultSleep, mood.sleep);
     end
     if (keep_exercise)
-      ext.defaultExercise = mood.exercise;
+      ext.update_attribute(:defaultExercise, mood.exercise);
     end
 
-    ext.lastEntryTime = currentUnixTime()
-    ext.save()
+    ext.update_attribute(:lastEntryTime, currentUnixTime());
 
     mood.save()
 

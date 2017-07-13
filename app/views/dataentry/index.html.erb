@@ -142,6 +142,7 @@
   window.setTimeout(function() {
     <% if (@remainingTimeToInput != 0)  %>
       remainingTime = <%= @remainingTimeToInput %>;
+      startTime =  + new Date() / 1000;
       console.log("Not yet available. Remaining time: " + remainingTime);
       changeCountdownDisplay();
       disableSubmit();

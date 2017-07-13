@@ -4,6 +4,8 @@
 
 
 var remainingTime = 0;
+var startTime = 0;
+var activeTimeout = null;
 var validCities = [
   "Abbotsford",
   "Armstrong",
@@ -142,9 +144,15 @@ function enableSubmit() {
 
 function changeCountdownDisplay() {
 
-  element = document.getElementById("countdown_h3");
+  if (activeTimeout != null)
+    window.clearTimeout(activeTimeout);
 
-  if (remainingTime == 0) {
+  element = document.getElementById("countdown_h3");
+  var relative = remainingTime - Math.floor(new Date() / 1000 - startTime);
+
+  console.log("Relative: " + relative);
+
+  if (relative < 0) {
     console.log("Now available");
     element.innerHTML = "Please enter your data!";
     document.getElementById("submit_input").disabled = false;
@@ -153,25 +161,35 @@ function changeCountdownDisplay() {
 
     document.getElementById("submit_input").disabled = true;
 
-    var hours = Math.floor(remainingTime / (60 * 60));
-    var minutes = Math.floor((remainingTime / 60) % 60);
-    var seconds = Math.floor(remainingTime % 60);
-
-    remainingTime -= 1;
+    var hours = Math.floor(relative / (60 * 60));
+    var minutes = Math.floor((relative / 60) % 60);
+    var seconds = Math.floor(relative % 60);
 
     var timeText = "";
-    if (hours > 0)
-      timeText += hours + " hours ";
-    if (minutes > 0)
-      timeText += minutes + " minutes ";
-    if (seconds > 0)
-      timeText += seconds + " seconds ";
+    if (hours > 0) {
+      if (hours == 1)
+        timeText += hours + " hour ";
+      else
+        timeText += hours + " hours ";
+    }
+    if (minutes > 0) {
+      if (minutes == 1)
+        timeText += minutes + " minute "
+      else
+        timeText += minutes + " minutes ";
+    }
+    if (seconds > 0) {
+      if (seconds == 1)
+        timeText += seconds + " second ";
+      else
+        timeText += seconds + " seconds ";
+    }
 
     element.innerHTML = "You can enter more data after " + timeText;
 
+    activeTimeout = setTimeout(function() { changeCountdownDisplay() }, 1000 );
   }
 
-  setTimeout(function() { changeCountdownDisplay() }, 1000 );
 
 }
 

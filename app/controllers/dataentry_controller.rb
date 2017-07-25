@@ -57,8 +57,8 @@ class DataentryController < ApplicationController
       mood.userid = current_user.id;
       mood.city = params[:city]
       mood.mood = Integer(params[:mood])
-      mood.sleep = Float(params[:sleep]) * 60
-      mood.exercise = Float(params[:exercise]) * 60
+      mood.sleep = Float(params[:sleep])
+      mood.exercise = Float(params[:exercise])
       mood.overcast = OpenWeather::get_weather_data_for_city(mood.city).clouds
 
       keep_city = params[:keep_city] == "1";

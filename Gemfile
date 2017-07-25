@@ -22,6 +22,7 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'therubyracer', platforms: :ruby
 
 gem 'chartkick'
+gem 'groupdate'
 
 gem 'bcrypt', :require => 'bcrypt'
 

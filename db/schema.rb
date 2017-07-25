@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(version: 20170713220913) do
     t.integer "userid"
     t.string "city"
     t.integer "mood"
-    t.integer "sleep"
-    t.integer "exercise"
+    t.float "sleep"
+    t.float "exercise"
     t.integer "overcast"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(version: 20170713220913) do
     t.string "password_digest"
     t.integer "lastEntryTime", default: 0
     t.string "defaultCity", default: "Vancouver"
-    t.integer "defaultSleep", default: 8
-    t.integer "defaultExercise", default: 1
+    t.float "defaultSleep", default: 8.0
+    t.float "defaultExercise", default: 0.5
     t.string "email"
   end
 

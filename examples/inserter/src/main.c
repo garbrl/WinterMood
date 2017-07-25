@@ -16,6 +16,9 @@
 #include "string_tools.h"
 
 
+#define INSERT_BATCH_LENGTH 0x30
+
+
 int
   count = -1,
   id_start = -1,
@@ -38,7 +41,7 @@ void print_help();
 time_t parse_time(char * str);
 time_t parse_time_increment(char * str);
 
-int mood_callback(int sleep, int exercise, int overcast);
+int mood_callback(float sleep, float exercise, int overcast);
 
 
 
@@ -118,7 +121,6 @@ int main ( int argc, char ** argv )
 
   clean_up(moods);
 
-  free(city);
 }
 
 void parse_arguments(int argc, char ** argv)
@@ -214,23 +216,33 @@ int insert_moods(List * moods)
 {
   unsigned int length = list_size(moods);
   ListTraversal * traversal = list_get_traversal(moods);
-  int index = 0, failures = 0;
+  Mood * mood_batch [INSERT_BATCH_LENGTH];
+  int index = 0, failures = 0, sub_index = 0;
 
   while (!list_traversal_completed(traversal))
   {
 
     printf("%02d%%", index * 100 / length);
     fflush(stdout);
-    Mood * mood = (Mood *) list_traversal_next(traversal).ptr;
 
-    if(!db_tools_insert(mood))
-      failures++;
+    if (sub_index == INSERT_BATCH_LENGTH)
+    {
+      sub_index = 0;
+      failures += db_tools_insert_all(mood_batch, INSERT_BATCH_LENGTH) ? 0 : INSERT_BATCH_LENGTH;
+    }
+
+    mood_batch[sub_index++] = (Mood *) list_traversal_next(traversal).ptr;
 
     printf("\033[3D");
     fflush(stdout);
 
     index++;
 
+  }
+
+  if (sub_index > 0)
+  {
+    failures += db_tools_insert_all(mood_batch, sub_index) ? 0 : sub_index;
   }
 
 }
@@ -249,6 +261,8 @@ void clean_up(List * moods)
   list_destroy(moods);
 
   db_tools_close();
+  free(db_path);
+  free(city);
 }
 
 time_t parse_time(char * str)
@@ -391,12 +405,12 @@ void print_help()
 
 
 
-int mood_callback(int sleep, int exercise, int overcast)
+int mood_callback(float sleep, float exercise, int overcast)
 {
-  double ag =
-    ((double) sleep) / (60 * 8) +
-    ((double) exercise) / 30 +
-    ((double) overcast) / 70;
+  float ag =
+    sleep / 8 +
+    exercise / 0.5F +
+    (1 - ((float) overcast) / 70);
 
   ag += (double) (rand() % 20) / 10;
 

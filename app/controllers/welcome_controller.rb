@@ -1,5 +1,6 @@
 
 class WelcomeController < ApplicationController
+include StatisticsHelper
 
 =begin
   Description: pre-view control method for view 'welcome/index'
@@ -78,8 +79,8 @@ class WelcomeController < ApplicationController
 
     @user.lastEntryTime = 0 # 1970 January 1st 00:00:00
     @user.defaultCity = "Vancouver"
-    @user.defaultSleep = 480
-    @user.defaultExercise = 30
+    @user.defaultSleep = 8.0
+    @user.defaultExercise = 0.5
 
 		if @user.save
 			log_in(@user)

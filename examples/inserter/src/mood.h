@@ -14,9 +14,10 @@ typedef struct Mood
     id,
     user_id,
     mood,
-    sleep,
-    exercise,
     overcast;
+  float
+    sleep,
+    exercise;
   time_t entry_time;
   char * city;
 }
@@ -29,14 +30,15 @@ Mood * mood_new(
     int user_id,
     char * city,
     int mood,
-    int sleep,
-    int exercise,
+    float sleep,
+    float exercise,
     int overcast,
     long entry_time
   );
 void mood_destroy(Mood * mood);
 
 char * mood_get_insert_string(Mood * mood, char * table_name);
+char * mood_get_insert_values_string(Mood * mood);
 char * mood_get_time_string(Mood * mood);
 char * mood_to_string(Mood * mood);
 
@@ -48,7 +50,7 @@ List * mood_form_range(
     char * city,
     time_t start,
     time_t jump,
-    int (*mood_callback)(int sleep, int exercise, int overcast)
+    int (*mood_callback)(float sleep, float exercise, int overcast)
   );
 
 

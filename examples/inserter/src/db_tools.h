@@ -13,7 +13,7 @@
 
 
 bool db_tools_insert(Mood * mood);
-int db_tools_insert_all(Mood ** moods, unsigned int moods_length);
+bool db_tools_insert_all(Mood ** moods, unsigned int moods_length);
 bool db_tools_open(char * str);
 bool db_tools_close();
 

@@ -4,8 +4,8 @@ class CreateMoods < ActiveRecord::Migration[5.1]
       t.integer :userid
       t.string :city
       t.integer :mood
-      t.integer :sleep
-      t.integer :exercise
+      t.float :sleep
+      t.float :exercise
       t.integer :overcast
 
       t.timestamps

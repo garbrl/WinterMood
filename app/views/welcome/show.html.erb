@@ -1,92 +1,75 @@
+<%= javascript_include_tag 'application' %>
 
-<%-# In the instructions below, application.js must be included before the -%>
-<%-# helper methods in your views, unless using the :content_for option. -%> 
+<div id="container">
+  <div id="header">
+    <div class="frame padding10">
+      <a href="/welcome/index" style="color: inherit; font: inherit; text-decoration: inherit;">
+        WinterMood
+      </a>
+    </div>
+  </div>
+  <div id="main">
 
-<% noun =
-        if (current_user.username == @user.username)
-          "Your"
-        else
-          "User's"
-        end
-  %>
+    <% if (@moods.size == 0) %>
+      <div id="feature">
+        <div class="frame">
+          <div class="left v_center">
+          WinterMood is an application that tracks your mood and determines if you are subject to Seasonal Affective Disorder
+          </div>
+        </div>
+      </div>
+      <br clear="all">
 
-<p>
-  <strong><%=noun%> username is:</strong>
-  <%= @user.username %>
-</p>
-<p>
-  <strong><%=noun%> email ID is:</strong>
-  <%= @user.email %>
-</p>
+      <div class="username_display">
+            <span style="font-size: 46px" > You currently have no mood data! </span>
+      </div>
 
-<a href="/dataentry/index">
-  Enter Data!
-</a>
+      <div class="buttons">
+        <%= link_to("/dataentry/index") do %>
+          <button type="button" class="big">Enter data</button>
+        <% end %>
 
-<% if (@moods.size == 0) %>
+      <% else %>
 
-  <p>
-    <strong><%=noun%> mood data will display here... if you had any.</strong>
-  </p>
+        <center>
+          <div class="username_display">
+            <span style="font-size: 46px" > General mood over time </span>
+          </div><br/>
+            <%= mood_pie_chart %><br/>
+          <div class="username_display">
+            <span style="font-size: 46px" > Mood by month </span>
+          </div><br/>
+            <%= mood_time_graph %><br/>
+          <div class="username_display">
+            <span style="font-size: 46px" > Mood related to sleep </span>
+          </div><br/>
+            <%= mood_sleep_graph %><br/>
+          <div class="username_display">
+            <span style="font-size: 46px" > Mood related to exercise </span>
+          </div><br/>
+            <%= mood_exercise_graph %><br/>
+          <div class="username_display">
+            <span style="font-size: 46px" > User activity over time </span>
+          </div>
+            <%= input_over_time %>
+        </center>
 
-<% else %>
+      <% end %>
 
-  <p>
-    <strong>Default Input Values:</strong>
-  </p>
-  <p>
-    <strong>City: </strong>
-    <%= "#{@ext.defaultCity}" %>
-  </p>
-  <p>
-    <strong>Sleep: </strong>
-    <%= "#{@ext.defaultSleep}" %>
-  </p>
-  <p>
-    <strong>Exercise: </strong>
-    <%= "#{@ext.defaultExercise}" %>
-  </p>
-
-
-  <br />
-  <p>
-    <strong>Inputted Data:</strong>
-  </p>
-
-  <table border="1">
-    <tr>
-      <th>City</th>
-      <th>Mood</th>
-      <th>Sleep</th>
-      <th>Exercise</th>
-      <th>Overcast</th>
-      <th>Time</th>
-    </tr>
-
-    <% @moods.each do |mood| %>
-
-      <tr>
-        <td>
-          <%= "#{mood.city}" %>
-        </td>
-        <td>
-          <%= "#{mood.mood}" %>
-        </td>
-        <td>
-          <%= "#{mood.sleep}" %>
-        </td>
-        <td>
-          <%= "#{mood.exercise}" %>
-        </td>
-        <td>
-          <%= "#{mood.overcast}" %>
-        </td>
-        <td>
-          <%= "#{mood.created_at}" %>
-        </td>
-      </tr>
-
-    <% end %>
-  </table>
-
-<% end %>
+  </div>
+  <div id="footer">
+    <div class="frame padding10">
+      <div class="left">
+        &#169; WinterMood 2017
+      </div>
+      <div class="right">
+        <b>Project created and developed by:</b><br/>
+        Vasundhara Gautam<br/>
+        Gabriel Faulhaber<br/>
+        Dylan Bing-Manners<br/>
+        Gavin Xu<br/>
+        Mitchell Larson<br/>
+      </div>
+    </div>
+  </div>
+</div>

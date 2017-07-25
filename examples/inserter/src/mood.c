@@ -17,8 +17,8 @@ Mood * mood_new(
     int user_id,
     char * city,
     int mood,
-    float sleep,
-    float exercise,
+    int sleep,
+    int exercise,
     int overcast,
     time_t entry_time
   )
@@ -67,7 +67,7 @@ char * mood_get_insert_string(Mood * mood, char * table_name)
   time_string = mood_get_time_string(mood);
 
   sprintf(buffer,
-    "INSERT INTO [%s] (id, userid, city, mood, sleep, exercise, overcast, created_at, updated_at) VALUES (%d, %d, '%s', %d, %f, %f, %d, '%s', '%s')",
+    "INSERT INTO [%s] (id, userid, city, mood, sleep, exercise, overcast, created_at, updated_at) VALUES (%d, %d, '%s', %d, %d, %d, %d, '%s', '%s');",
     table_name,
     mood->id,
     mood->user_id,
@@ -82,42 +82,6 @@ char * mood_get_insert_string(Mood * mood, char * table_name)
 
   free(time_string);
 
-
-  unsigned int string_length = strlen(buffer);
-
-  return_string = (char *) malloc(string_length + 1);
-  assert(return_string);
-
-  memcpy(return_string, buffer, string_length + 1);
-
-  return return_string;
-}
-
-char * mood_get_insert_values_string(Mood * mood)
-{
-  assert(mood);
-
-  char
-    buffer[1024],
-    * return_string,
-    * time_string;
-
-  time_string = mood_get_time_string(mood);
-
-  sprintf(buffer,
-    "(%d, %d, '%s', %d, %f, %f, %d, '%s', '%s')",
-    mood->id,
-    mood->user_id,
-    mood->city,
-    mood->mood,
-    mood->sleep,
-    mood->exercise,
-    mood->overcast,
-    time_string,
-    time_string
-    );
-
-  free(time_string);
 
   unsigned int string_length = strlen(buffer);
 
@@ -164,15 +128,14 @@ char * mood_to_string(Mood * mood)
 
   sprintf(
     buffer,
-    "Mood:{id=%d, user_id=%d, mood=%d, sleep=%f, exercise=%f, overcast=%d, entry_time='%s', city='%s'}",
+    "Mood:{id=%d, user_id=%d, mood=%d, sleep=%d, exercise=%d, overcast=%d, entry_time='%s', city='NYI'}",
     mood->id,
     mood->user_id,
     mood->mood,
     mood->sleep,
     mood->exercise,
     mood->overcast,
-    time_string,
-    mood->city
+    time_string
     );
 
   free(time_string);
@@ -196,7 +159,7 @@ List * mood_form_range(
     char * city,
     time_t start,
     time_t jump,
-    int (*mood_callback)(float sleep, float exercise, int overcast)
+    int (*mood_callback)(int sleep, int exercise, int overcast)
   )
 {
   assert(city);
@@ -206,10 +169,9 @@ List * mood_form_range(
 
   int
     mood,
-    overcast;
-  float
     sleep,
-    exercise;
+    exercise,
+    overcast;
 
   for (unsigned int k = 0; k < count; k++)
   {
@@ -221,10 +183,10 @@ List * mood_form_range(
     }
 
     /* uniform distribution between 6-8 hours */
-    sleep = ((float) (rand() % (2 * 60))) / 60 + 6;
+    sleep = rand() % (2 * 60 + 1) + (6 * 60);
 
     /* uniform distribution between 0-1 hours */
-    exercise = ((float) (rand() % 60)) / 60;
+    exercise = rand() % (1 * 60 + 1);
 
     /* overcast percentage based on month with noise */
     int overcastnoise = rand() % 11 + (-5);

@@ -1,5 +1,5 @@
 /* File:     mood.c
- * Author:   Mitchell Larson
+ * Authors:  Mitchell Larson, Vasundhara Gautam
  */
 
 #include "mood.h"

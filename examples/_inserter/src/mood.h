@@ -33,7 +33,7 @@ Mood * mood_new(
     float sleep,
     float exercise,
     int overcast,
-    long entry_time
+    time_t entry_time
   );
 void mood_destroy(Mood * mood);
 
@@ -53,7 +53,6 @@ List * mood_form_range(
     time_t jump_variance,
     int (*mood_callback)(float sleep, float exercise, int overcast)
   );
-
 
 
 #endif

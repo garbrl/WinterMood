@@ -127,7 +127,7 @@ int main ( int argc, char ** argv )
   }
 
   clean_up(moods);
-
+  return 0;
 }
 
 void parse_arguments(int argc, char ** argv)
@@ -212,7 +212,7 @@ void parse_arguments(int argc, char ** argv)
     }
     else if (string_tools_starts_with(arg, "--time-increment-variance="))
     {
-      substring = string_tools_substring(arg, strlen("--time-increment-variance="));
+      substring = string_tools_substring(arg, strlen("--time-increment-variance"));
       time_increment_variance = parse_time_increment(substring);
       if (time_increment == 0)
       {
@@ -263,6 +263,7 @@ int insert_moods(List * moods)
     failures += db_tools_insert_all(mood_batch, sub_index) ? 0 : sub_index;
   }
 
+  return failures;
 }
 
 
@@ -428,11 +429,9 @@ int mood_callback(float sleep, float exercise, int overcast)
   float ag =
     sleep / 8 +
     exercise / 0.5F +
-    1 - (float) overcast / 100;
+    (1 - ((float) overcast) / 70);
 
-  ag += (double) (rand() % 20) / 15;
-
-  /* fprintf(stderr, "sleep: %f, exercise: %f, overcast: %d  ->   %f\n", sleep, exercise, overcast, ag); */
+  ag += (double) (rand() % 20) / 10;
 
   if (ag < 1)
     return 1;

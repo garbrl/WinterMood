@@ -1,5 +1,5 @@
 /* File:     mood.c
- * Author:   Mitchell Larson
+ * Authors:  Mitchell Larson, Vasundhara Gautam
  */
 
 #include "mood.h"
@@ -67,7 +67,7 @@ char * mood_get_insert_string(Mood * mood, char * table_name)
   time_string = mood_get_time_string(mood);
 
   sprintf(buffer,
-    "INSERT INTO [%s] (id, userid, city, mood, sleep, exercise, overcast, created_at, updated_at) VALUES (%d, %d, '%s', %d, %f, %f, %d, '%s', '%s')",
+    "INSERT INTO [%s] (id, userid, city, mood, sleep, exercise, overcast, created_at, updated_at) VALUES (%d, %d, '%s', %d, %f, %f, %d, '%s', '%s');",
     table_name,
     mood->id,
     mood->user_id,
@@ -82,42 +82,6 @@ char * mood_get_insert_string(Mood * mood, char * table_name)
 
   free(time_string);
 
-
-  unsigned int string_length = strlen(buffer);
-
-  return_string = (char *) malloc(string_length + 1);
-  assert(return_string);
-
-  memcpy(return_string, buffer, string_length + 1);
-
-  return return_string;
-}
-
-char * mood_get_insert_values_string(Mood * mood)
-{
-  assert(mood);
-
-  char
-    buffer[1024],
-    * return_string,
-    * time_string;
-
-  time_string = mood_get_time_string(mood);
-
-  sprintf(buffer,
-    "(%d, %d, '%s', %d, %f, %f, %d, '%s', '%s')",
-    mood->id,
-    mood->user_id,
-    mood->city,
-    mood->mood,
-    mood->sleep,
-    mood->exercise,
-    mood->overcast,
-    time_string,
-    time_string
-    );
-
-  free(time_string);
 
   unsigned int string_length = strlen(buffer);
 
@@ -164,15 +128,14 @@ char * mood_to_string(Mood * mood)
 
   sprintf(
     buffer,
-    "Mood:{id=%d, user_id=%d, mood=%d, sleep=%f, exercise=%f, overcast=%d, entry_time='%s', city='%s'}",
+    "Mood:{id=%d, user_id=%d, mood=%d, sleep=%f, exercise=%f, overcast=%d, entry_time='%s', city='NYI'}",
     mood->id,
     mood->user_id,
     mood->mood,
     mood->sleep,
     mood->exercise,
     mood->overcast,
-    time_string,
-    mood->city
+    time_string
     );
 
   free(time_string);
@@ -222,10 +185,10 @@ List * mood_form_range(
     }
 
     /* uniform distribution between 6-8 hours */
-    sleep = (double) (rand() % (2 * 60 + 1) + (6 * 60)) / 60;
+    sleep = rand() % (2 * 60 + 1) + (6 * 60);
 
     /* uniform distribution between 0-1 hours */
-    exercise = (double) (rand() % (1 * 60 + 1)) / 60;
+    exercise = rand() % (1 * 60 + 1);
 
     /* overcast percentage based on month with noise */
     int overcastnoise = rand() % 11 + (-5);
@@ -244,9 +207,8 @@ List * mood_form_range(
         sleep,
         exercise,
         overcast,
-        start + jump * k + (jump_variance == 0 ? 0 : (rand() % (jump_variance * 2 + 1)) - jump_variance)
+        start + jump * k + (jump_variance == 0 ? 0 : (rand() % (jump_variance * 2)) - jump_variance)
       ));
-
 
   }
 

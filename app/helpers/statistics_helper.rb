@@ -1,7 +1,7 @@
 module StatisticsHelper
 
   def input_over_time
-    line_chart Mood.group_by_day(:created_at).count, width: "500px", height: '300px', library: {
+    line_chart Mood.group_by_day(:created_at).count, range: 1.week.ago..Time.now,  width: "500px", height: '300px', library: {
       title: {text: 'Activity over time', x: -20},
       yAxis: {
          allowDecimals: false

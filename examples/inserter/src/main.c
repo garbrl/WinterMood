@@ -263,6 +263,7 @@ int insert_moods(List * moods)
     failures += db_tools_insert_all(mood_batch, sub_index) ? 0 : sub_index;
   }
 
+  return failures;
 }
 
 

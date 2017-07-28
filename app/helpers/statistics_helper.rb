@@ -14,7 +14,7 @@ module StatisticsHelper
   end
 
   def mood_time_graph
-    line_chart Mood.group_by_month(:created_at, range: 2.years.ago..Time.now, default_value: "missing").average(:mood),
+    line_chart Mood.group_by_month(:created_at, range: 2.years.ago..Time.now).average(:mood),
     width: "500px", height: '300px', allowDecimals: false
   end
 
@@ -27,7 +27,7 @@ module StatisticsHelper
   end
 
   def mood_location_graph
-    line_chart Mood.pluck(:city, :mood), width: "500px", height: '300px'
+    bar_chart Mood.group(:city).average(:mood), width: "500px", height: '100px'
   end
 
 end

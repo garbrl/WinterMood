@@ -61,9 +61,9 @@ class DataentryController < ApplicationController
       mood.exercise = Float(params[:exercise])
       mood.overcast = OpenWeather::get_weather_data_for_city(mood.city).clouds
 
-      keep_city = params[:keep_city] == "1";
-      keep_sleep = params[:keep_sleep] == "1";
-      keep_exercise = params[:keep_exercise] == "1";
+      keep_city = params[:keep_city] == "1"
+      keep_sleep = params[:keep_sleep] == "1"
+      keep_exercise = params[:keep_exercise] == "1"
 
     rescue Exception => e
       puts(e)
@@ -71,7 +71,6 @@ class DataentryController < ApplicationController
       return
     end
 
-    ext.defaultCity = mood.city;
     if (keep_city)
       ext.update_attribute(:defaultCity, mood.city);
     end

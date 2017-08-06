@@ -5,6 +5,10 @@
  */
 
 
+/*
+ * Generates an array of arrays
+ * for use by the Matrix object
+ */
 function formMatrixArray(width, height) {
 
   var ret = [];
@@ -22,6 +26,11 @@ function formMatrixArray(width, height) {
   return ret;
 }
 
+/*
+ * Returns the minimum value of the
+ * specified array. The array is assumed
+ * to be full of numbers
+ */
 function minimumOf(array) {
 
   best = array[0];
@@ -35,6 +44,9 @@ function minimumOf(array) {
   return best;
 }
 
+/*
+ * Object specification for a 'width'x'height' Matrix
+ */
 function Matrix(width, height) {
 
   this.width = width;
@@ -42,12 +54,25 @@ function Matrix(width, height) {
 
   this.array = formMatrixArray(width, height);
 
+  /*
+   * Gets the element in the specified row
+   * and column of the matrix. If the specified
+   * indices are out of bounds, an exception is
+   * thrown
+   */
   this.get = function(x, y) {
     if (x < 0 || y < 0 || x >= this.width || y >= this.height)
       throw "Matrix get out of range (" + x + ", " + y + ")";
     return this.array[x][y];
   }
 
+  /*
+   * Sets the element in the specified row
+   * and column of the matrix to the specified
+   * value. If the specified
+   * indices are out of bounds, an exception is
+   * thrown
+   */
   this.set = function(x, y, val) {
     if (x < 0 || y < 0 || x >= this.width || y >= this.height)
       throw "Matrix set out of range (" + x + ", " + y + ")";

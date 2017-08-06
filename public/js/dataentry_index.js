@@ -134,14 +134,23 @@ var validCities = [
   "Valemount"
 ];
 
+/*
+ * Disables the submit input
+ */
 function disableSubmit() {
   document.getElementById("submit_input").disabled = true;
 }
 
+/*
+ * Enables the submit input
+ */
 function enableSubmit() {
   document.getElementById("submit_input").disabled = false;
 }
 
+/*
+ * Callback to change the coutdown display
+ */
 function changeCountdownDisplay() {
 
   if (activeTimeout != null)
@@ -193,6 +202,10 @@ function changeCountdownDisplay() {
 
 }
 
+/*
+ * Returns true only if the provided city
+ * is known to be valid
+ */
 function cityIsValid(str) {
   for (var k = 0; k < validCities.length; k += 1) {
     if (validCities[k].toLowerCase() == str.toLowerCase())
@@ -203,8 +216,12 @@ function cityIsValid(str) {
 }
 
 
+/*
+ * Attempts to resolve the provided city name
+ * to a known city name
+ */
 function resolveCityName(str) {
-  var bestDistance = 10000; // pointlessly large number
+  var bestDistance = 10000; /* arbitrarilly large number */
   var bestCity = "Unknown";
 
   str = str.toLowerCase();
@@ -228,6 +245,10 @@ function resolveCityName(str) {
   }
 }
 
+/*
+ * Returns true of the provided string constitutes
+ * a valid decimal integer
+ */
 function isInteger(str) {
 
   if (str.length == 0)
@@ -246,6 +267,10 @@ function isInteger(str) {
   return true;
 }
 
+/*
+ * Sets the error banner on the screen to the provided
+ * value. Also clears the message banner
+ */
 function setError(str) {
   console.log("Setting error: \"" + str + "\"");
 
@@ -253,6 +278,10 @@ function setError(str) {
   document.getElementById("message_banner_h2").innerHTML = "";
 }
 
+/*
+ * Sets the value of the city input in the form
+ * to the provided string
+ */
 function setCityTo(str) {
   console.log("Set city to: \"" + str + "\"");
 
@@ -262,6 +291,9 @@ function setCityTo(str) {
   enableSubmit();
 }
 
+/*
+ * Callback function for form validation
+ */
 function validateSubmitForm() {
 
   setError("");
@@ -303,12 +335,18 @@ function validateSubmitForm() {
 
 }
 
+/*
+ * Callback for text field change events
+ */
 function textField_OnChange() {
   if (remainingTime == 0) {
     enableSubmit();
   }
 }
 
+/*
+ * Callback for range input events
+ */
 function range_onInput(id, value)
 {
   document.getElementById(id + "_span", value).innerHTML = value;

@@ -236,7 +236,7 @@ List * mood_form_range(
 
     mood = mood_callback(sleep, exercise, overcast);
 
-    list_add(ret, (Any)(void *) mood_new(
+    list_add(ret, ptr_to_any(mood_new(
         id_start + k,
         user_id,
         city,
@@ -245,7 +245,7 @@ List * mood_form_range(
         exercise,
         overcast,
         start + jump * k + (jump_variance == 0 ? 0 : (rand() % (jump_variance * 2 + 1)) - jump_variance)
-      ));
+      )));
 
 
   }

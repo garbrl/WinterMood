@@ -249,7 +249,7 @@ int insert_moods(List * moods)
       failures += db_tools_insert_all(mood_batch, INSERT_BATCH_LENGTH) ? 0 : INSERT_BATCH_LENGTH;
     }
 
-    mood_batch[sub_index++] = (Mood *) list_traversal_next(traversal).ptr;
+    mood_batch[sub_index++] = (Mood *) any_to_ptr(list_traversal_next(traversal));
 
     printf("\033[3D");
     fflush(stdout);
@@ -274,7 +274,7 @@ void clean_up(List * moods)
 
   while (!list_traversal_completed(traversal))
   {
-    mood_destroy( (Mood *) list_traversal_next(traversal).ptr );
+    mood_destroy( (Mood *) any_to_ptr(list_traversal_next(traversal)));
   }
 
   list_destroy(moods);

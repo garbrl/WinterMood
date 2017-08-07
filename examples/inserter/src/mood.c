@@ -1,5 +1,5 @@
 /* File:     mood.c
- * Author:   Mitchell Larson
+ * Authors:  Mitchell Larson, Vasundhara Gautam
  */
 
 #include "mood.h"
@@ -214,8 +214,8 @@ List * mood_form_range(
 
   for (unsigned int k = 0; k < count; k++)
   {
-    /* technically monthly sunshine percentage which we will inverse to treat as overcast percentage */
-    int overcastarr[12] = { 12,	32,	37,	45,	57,	67,	79,	92,	66,	36,	20,	12 };
+    /* technically monthly sunshine percentage which we will take the complement to treat as overcast percentage */
+    int overcastarr[12] = { 12, 32, 37, 45, 57, 67, 79, 92, 66, 36, 20, 12 };
     for (int i = 0; i < 12; i++)
     {
       overcastarr[i] = 100 - overcastarr[i];

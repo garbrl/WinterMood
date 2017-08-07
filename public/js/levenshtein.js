@@ -1,7 +1,11 @@
 /*
- * Code file implementing the Wagner-Fischer
- * algorithm for calculating the levenshtein
- * distance between two strings
+ * File:     levenshtein.js
+ * Author:   Mitchell Larson
+ *
+ * Purpose:
+ *   Code file implementing the Wagner-Fischer
+ *   algorithm for calculating the levenshtein
+ *   distance between two strings
  */
 
 
